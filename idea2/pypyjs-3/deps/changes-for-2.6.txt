@@ -1,0 +1,616 @@
+Somente em pypy/rpython/annotator: annrpython.pyc
+Somente em pypy/rpython/annotator: argument.pyc
+Somente em pypy/rpython/annotator: binaryop.pyc
+Somente em pypy/rpython/annotator: bookkeeper.pyc
+Somente em pypy/rpython/annotator: builtin.pyc
+Somente em pypy/rpython/annotator: classdef.pyc
+Somente em pypy/rpython/annotator: description.pyc
+Somente em pypy/rpython/annotator: dictdef.pyc
+Somente em pypy/rpython/annotator: exception.pyc
+Somente em pypy/rpython/annotator: __init__.pyc
+Somente em pypy/rpython/annotator: listdef.pyc
+Somente em pypy/rpython/annotator: model.pyc
+Somente em pypy/rpython/annotator: policy.pyc
+Somente em pypy/rpython/annotator: signature.pyc
+Somente em pypy/rpython/annotator: specialize.pyc
+Somente em pypy/rpython/annotator: unaryop.pyc
+Somente em pypy/rpython/: _cache
+Somente em pypy/rpython/config: config.pyc
+Somente em pypy/rpython/config: __init__.pyc
+Somente em pypy/rpython/config: support.pyc
+diff -r pypy/rpython/config/translationoption.py pypy-2.6.0-src/rpython/config/translationoption.py (OK)
+39d38
+<     'emscripten',
+50c49
+<                  ["c", "js"], default="c",
+---
+>                  ["c"], default="c",
+53,54d51
+<                      "js":     [("translation.type_system", "lltype"),
+<                                 ("translation.platform", "emscripten")],
+277,282d273
+<                  requires={"emscripten": [
+<                              ("translation.gcrootfinder", "shadowstack"),
+<                              ("translation.shared", False),
+<                              ("translation.thread", False),
+<                              ("translation.no__thread", True),
+<                            ]},
+Somente em pypy/rpython/config: translationoption.pyc
+diff -r pypy/rpython/conftest.py pypy-2.6.0-src/rpython/conftest.py (OK)
+55,57c55,56
+< # XXX TODO: re-enable this when asmjs jit backend stops leaking
+< #def pytest_addhooks(pluginmanager):
+< #    pluginmanager.register(LeakFinder())
+---
+> def pytest_addhooks(pluginmanager):
+>     pluginmanager.register(LeakFinder())
+Somente em pypy/rpython/: conftest.pyc
+Somente em pypy/rpython/flowspace: argument.pyc
+Somente em pypy/rpython/flowspace: bytecode.pyc
+Somente em pypy/rpython/flowspace: flowcontext.pyc
+Somente em pypy/rpython/flowspace: framestate.pyc
+Somente em pypy/rpython/flowspace: generator.pyc
+Somente em pypy/rpython/flowspace: __init__.pyc
+Somente em pypy/rpython/flowspace: model.pyc
+Somente em pypy/rpython/flowspace: objspace.pyc
+Somente em pypy/rpython/flowspace: operation.pyc
+Somente em pypy/rpython/flowspace: pygraph.pyc
+Somente em pypy/rpython/flowspace: specialcase.pyc
+Somente em pypy/rpython/: __init__.pyc
+Somente em pypy/rpython/jit/backend: asmjs
+diff -r pypy/rpython/jit/backend/detect_cpu.py pypy-2.6.0-src/rpython/jit/backend/detect_cpu.py  (OK)
+18d17
+< MODEL_ASMJS       = 'asmjs'
+30d28
+<         MODEL_ASMJS:  ['__EMSCRIPTEN__'],
+115,116d112
+<     elif backend_name == MODEL_ASMJS:
+<         return "rpython.jit.backend.asmjs.runner", "CPU_ASMJS"
+Somente em pypy/rpython/jit/backend: detect_cpu.pyc
+Somente em pypy/rpython/jit/backend: hlinfo.pyc
+Somente em pypy/rpython/jit/backend: __init__.pyc
+Somente em pypy/rpython/jit/backend/llsupport: asmmemmgr.pyc
+Somente em pypy/rpython/jit/backend/llsupport: assembler.pyc
+Somente em pypy/rpython/jit/backend/llsupport: callbuilder.pyc
+Somente em pypy/rpython/jit/backend/llsupport: codemap.pyc
+Somente em pypy/rpython/jit/backend/llsupport: descr.pyc
+Somente em pypy/rpython/jit/backend/llsupport: ffisupport.pyc
+Somente em pypy/rpython/jit/backend/llsupport: gcmap.pyc
+diff -r pypy/rpython/jit/backend/llsupport/gc.py pypy-2.6.0-src/rpython/jit/backend/llsupport/gc.py  (OK)
+130,142d129
+<     def round_up_for_allocation(self, size):
+<         if not self.round_up:
+<             return size
+<         if self.translate_support_code:
+<             from rpython.rtyper.lltypesystem import llarena
+<             return llarena.round_up_for_allocation(
+<                 size, self.minimal_size_in_nursery)
+<         else:
+<             # non-translated: do it manually
+<             # assume that "self.gc_ll_descr.minimal_size_in_nursery" is 2 WORDs
+<             size = max(size, 2 * WORD)
+<             return (size + WORD-1) & ~(WORD-1) # round up
+< 
+343,344c330
+<         size = self.round_up_for_allocation(sizedescr.size)
+<         return self.malloc_fixedsize(size)
+---
+>         return self.malloc_fixedsize(sizedescr.size)
+611d596
+<         size = self.round_up_for_allocation(sizedescr.size)
+613c598
+<                                                type_id, size,
+---
+>                                                type_id, sizedescr.size,
+Somente em pypy/rpython/jit/backend/llsupport: gc.pyc
+Somente em pypy/rpython/jit/backend/llsupport: __init__.pyc
+Somente em pypy/rpython/jit/backend/llsupport: jitframe.pyc
+Somente em pypy/rpython/jit/backend/llsupport: llerrno.pyc
+Somente em pypy/rpython/jit/backend/llsupport: llmodel.pyc
+Somente em pypy/rpython/jit/backend/llsupport: memcpy.pyc
+Somente em pypy/rpython/jit/backend/llsupport: regalloc.pyc
+diff -r pypy/rpython/jit/backend/llsupport/rewrite.py pypy-2.6.0-src/rpython/jit/backend/llsupport/rewrite.py  (OK)
+511c511
+<         size = self.gc_ll_descr.round_up_for_allocation(size)
+---
+>         size = self.round_up_for_allocation(size)
+Somente em pypy/rpython/jit/backend/llsupport: rewrite.pyc
+Somente em pypy/rpython/jit/backend/llsupport: support.pyc
+Somente em pypy/rpython/jit/backend/llsupport: symbolic.pyc
+diff -r pypy/rpython/jit/backend/llsupport/test/test_gc_integration.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/test_gc_integration.py (OK Partial ???? )
+93,94d92
+<         elif self.cpu.backend_name.startswith('asmjs'):
+<             assert nos == [0, 2, 3]
+331,333c329
+<                 exp_idx = self.cpu.JITFRAME_FIXED_SIZE - 32 * idx
+<                 if not self.cpu.backend_name.startswith('asmjs'):
+<                     exp_idx += 1 # +1 from i0
+---
+>                 exp_idx = self.cpu.JITFRAME_FIXED_SIZE - 32 * idx + 1 # +1 from i0
+361,364c357
+<             if self.cpu.backend_name.startswith('asmjs'):
+<                 assert len(x) == 1
+<                 assert bin(x[0]).count('1') == 16
+<             elif self.cpu.IS_64_BIT:
+---
+>             if self.cpu.IS_64_BIT:
+651,652d643
+<             elif self.cpu.backend_name.startswith('asmjs'):
+<                 assert gcmap == [0, 1, 2]
+699c690
+<         assert gcmap[0] <= self.cpu.JITFRAME_FIXED_SIZE
+---
+>         assert gcmap[0] < self.cpu.JITFRAME_FIXED_SIZE
+849,850c840
+<             if self.cpu.backend_name != 'asmjs':
+<                 assert frame.jf_gcmap[0] & 31 == 0
+---
+>             assert frame.jf_gcmap[0] & 31 == 0
+895,896c885
+<             if self.cpu.backend_name != 'asmjs':
+<                 assert frame.jf_gcmap[0] & 31 == 0
+---
+>             assert frame.jf_gcmap[0] & 31 == 0
+diff -r pypy/rpython/jit/backend/llsupport/test/test_regalloc_integration.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/test_regalloc_integration.py (OK)
+120,123c120
+<         try:
+<             regalloc = self.cpu.build_regalloc()
+<         except AttributeError:
+<             return None
+---
+>         regalloc = self.cpu.build_regalloc()
+412,414c409,410
+<         if regalloc is not None:
+<             assert len(regalloc.rm.reg_bindings) == 0
+<             assert len(regalloc.fm.bindings) == 4
+---
+>         assert len(regalloc.rm.reg_bindings) == 0
+>         assert len(regalloc.fm.bindings) == 4
+diff -r pypy/rpython/jit/backend/llsupport/test/zrpy_gc_test.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/zrpy_gc_test.py  (OK)
+83d82
+<     from rpython.translator.platform import platform, is_host_build
+88,89d86
+<     if not is_host_build():
+<         t.platform = platform
+Somente em pypy/rpython/jit/backend: model.pyc
+Somente em pypy/rpython/jit/backend/x86: arch.pyc
+Somente em pypy/rpython/jit/backend/x86: assembler.pyc
+Somente em pypy/rpython/jit/backend/x86: callbuilder.pyc
+Somente em pypy/rpython/jit/backend/x86: codebuf.pyc
+Somente em pypy/rpython/jit/backend/x86: detect_sse2.pyc
+Somente em pypy/rpython/jit/backend/x86: __init__.pyc
+Somente em pypy/rpython/jit/backend/x86: jump.pyc
+Somente em pypy/rpython/jit/backend/x86: profagent.pyc
+Somente em pypy/rpython/jit/backend/x86: regalloc.pyc
+Somente em pypy/rpython/jit/backend/x86: regloc.pyc
+Somente em pypy/rpython/jit/backend/x86: runner.pyc
+Somente em pypy/rpython/jit/backend/x86: rx86.pyc
+Somente em pypy/rpython/jit/backend/x86: support.pyc
+Somente em pypy/rpython/jit/backend/x86: valgrind.pyc
+Somente em pypy/rpython/jit/codewriter: assembler.pyc
+Somente em pypy/rpython/jit/codewriter: call.pyc
+Somente em pypy/rpython/jit/codewriter: codewriter.pyc
+Somente em pypy/rpython/jit/codewriter: effectinfo.pyc
+Somente em pypy/rpython/jit/codewriter: flatten.pyc
+Somente em pypy/rpython/jit/codewriter: format.pyc
+Somente em pypy/rpython/jit/codewriter: heaptracker.pyc
+Somente em pypy/rpython/jit/codewriter: __init__.pyc
+Somente em pypy/rpython/jit/codewriter: jitcode.pyc
+Somente em pypy/rpython/jit/codewriter: jtransform.pyc
+Somente em pypy/rpython/jit/codewriter: liveness.pyc
+Somente em pypy/rpython/jit/codewriter: longlong.pyc
+Somente em pypy/rpython/jit/codewriter: policy.pyc
+Somente em pypy/rpython/jit/codewriter: regalloc.pyc
+Somente em pypy/rpython/jit/codewriter: support.pyc
+Somente em pypy/rpython/jit: __init__.pyc
+Somente em pypy/rpython/jit/metainterp: blackhole.pyc
+Somente em pypy/rpython/jit/metainterp: compile.pyc
+Somente em pypy/rpython/jit/metainterp: counter.pyc
+Somente em pypy/rpython/jit/metainterp: executor.pyc
+Somente em pypy/rpython/jit/metainterp: gc.pyc
+Somente em pypy/rpython/jit/metainterp: greenfield.pyc
+Somente em pypy/rpython/jit/metainterp: heapcache.pyc
+diff -r pypy/rpython/jit/metainterp/history.py pypy-2.6.0-src/rpython/jit/metainterp/history.py (OK)
+154,156c154
+<     _attrs_ = ('adr_jump_offset', 'rd_locs', 'rd_loop_token',
+<                '_asmjs_block', '_asmjs_faillocs', '_asmjs_failkinds',
+<                '_asmjs_failvars', '_asmjs_hasexc', '_asmjs_gcmap')
+---
+>     _attrs_ = ('adr_jump_offset', 'rd_locs', 'rd_loop_token')
+Somente em pypy/rpython/jit/metainterp: history.pyc
+Somente em pypy/rpython/jit/metainterp: __init__.pyc
+Somente em pypy/rpython/jit/metainterp: inliner.pyc
+Somente em pypy/rpython/jit/metainterp: jitdriver.pyc
+Somente em pypy/rpython/jit/metainterp: jitexc.pyc
+Somente em pypy/rpython/jit/metainterp: jitprof.pyc
+Somente em pypy/rpython/jit/metainterp: logger.pyc
+Somente em pypy/rpython/jit/metainterp: memmgr.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: earlyforce.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: generalize.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: heap.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: __init__.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: intbounds.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: intutils.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: optimizer.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: pure.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: rawbuffer.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: rewrite.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: simplify.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: unroll.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: util.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: virtualize.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: virtualstate.pyc
+Somente em pypy/rpython/jit/metainterp/optimizeopt: vstring.pyc
+Somente em pypy/rpython/jit/metainterp: optimize.pyc
+diff -r pypy/rpython/jit/metainterp/pyjitpl.py pypy-2.6.0-src/rpython/jit/metainterp/pyjitpl.py  (OK)
+1533,1534c1533,1534
+<             fnaddr = sd.cpu.ts.getaddr_for_box(funcbox)
+<             jitcode = sd.bytecode_for_address(fnaddr, calldescr)
+---
+>             key = sd.cpu.ts.getaddr_for_box(funcbox)
+>             jitcode = sd.bytecode_for_address(key)
+1664c1664
+<     def bytecode_for_address(self, fnaddress, calldescr):
+---
+>     def bytecode_for_address(self, fnaddress):
+1673,1675c1673,1674
+<                     key = self._fn_cache_key(jitcode.fnaddr, jitcode.calldescr)
+<                     assert key not in d
+<                     d[key] = jitcode
+---
+>                     assert jitcode.fnaddr not in d
+>                     d[jitcode.fnaddr] = jitcode
+1677,1678c1676
+<             key = self._fn_cache_key(fnaddress, calldescr)
+<             return d.get(key, None)
+---
+>             return d.get(fnaddress, None)
+1680d1677
+<             key = self._fn_cache_key(fnaddress, calldescr)
+1682,1683c1679
+<                 jckey = self._fn_cache_key(jitcode.fnaddr, jitcode.calldescr)
+<                 if key == jckey:
+---
+>                 if jitcode.fnaddr == fnaddress:
+1686,1688d1681
+< 
+<     def _fn_cache_key(self, fnaddr, calldescr):
+<         return (fnaddr, calldescr.get_result_type(), calldescr.get_arg_types())
+Somente em pypy/rpython/jit/metainterp: pyjitpl.pyc
+Somente em pypy/rpython/jit/metainterp: quasiimmut.pyc
+Somente em pypy/rpython/jit/metainterp: resoperation.pyc
+Somente em pypy/rpython/jit/metainterp: resume.pyc
+Somente em pypy/rpython/jit/metainterp: typesystem.pyc
+Somente em pypy/rpython/jit/metainterp: virtualizable.pyc
+Somente em pypy/rpython/jit/metainterp: virtualref.pyc
+Somente em pypy/rpython/jit/metainterp: walkvirtual.pyc
+Somente em pypy/rpython/jit/metainterp: warmspot.pyc
+Somente em pypy/rpython/jit/metainterp: warmstate.pyc
+Somente em pypy/rpython/memory/gc: base.pyc
+Somente em pypy/rpython/memory/gc: env.pyc
+Somente em pypy/rpython/memory/gc: incminimark.pyc
+Somente em pypy/rpython/memory/gc: __init__.pyc
+Somente em pypy/rpython/memory/gc: inspector.pyc
+Somente em pypy/rpython/memory/gc: minimarkpage.pyc
+Somente em pypy/rpython/memory: gcheader.pyc
+Somente em pypy/rpython/memory/gctransform: asmgcroot.pyc
+Somente em pypy/rpython/memory/gctransform: framework.pyc
+Somente em pypy/rpython/memory/gctransform: __init__.pyc
+Somente em pypy/rpython/memory/gctransform: log.pyc
+Somente em pypy/rpython/memory/gctransform: shadowstack.pyc
+Somente em pypy/rpython/memory/gctransform: support.pyc
+Somente em pypy/rpython/memory/gctransform: transform.pyc
+Somente em pypy/rpython/memory: gctypelayout.pyc
+Somente em pypy/rpython/memory: __init__.pyc
+Somente em pypy/rpython/memory: lldict.pyc
+Somente em pypy/rpython/memory: lltypelayout.pyc
+Somente em pypy/rpython/memory: support.pyc
+Somente em pypy/rpython/rlib: buffer.pyc
+Somente em pypy/rpython/rlib: cache.pyc
+Somente em pypy/rpython/rlib: clibffi.pyc
+Somente em pypy/rpython/rlib: constant.pyc
+Somente em pypy/rpython/rlib: debug.pyc
+Somente em pypy/rpython/rlib: entrypoint.pyc
+Somente em pypy/rpython/rlib: exports.pyc
+Somente em pypy/rpython/rlib: __init__.pyc
+Somente em pypy/rpython/rlib: jit_hooks.pyc
+Somente em pypy/rpython/rlib: jit_libffi.pyc
+Somente em pypy/rpython/rlib: jit.pyc
+Somente em pypy/rpython/rlib: _jit_vref.pyc
+Somente em pypy/rpython/rlib: libffi.pyc
+Somente em pypy/rpython/rlib: listsort.pyc
+Somente em pypy/rpython/rlib: longlong2float.pyc
+Somente em pypy/rpython/rlib: nonconst.pyc
+Somente em pypy/rpython/rlib: objectmodel.pyc
+Somente em pypy/rpython/rlib/parsing: codebuilder.pyc
+Somente em pypy/rpython/rlib/parsing: deterministic.pyc
+Somente em pypy/rpython/rlib/parsing: ebnfparse.pyc
+Somente em pypy/rpython/rlib/parsing: __init__.pyc
+Somente em pypy/rpython/rlib/parsing: lexer.pyc
+Somente em pypy/rpython/rlib/parsing: makepackrat.pyc
+Somente em pypy/rpython/rlib/parsing: parsing.pyc
+Somente em pypy/rpython/rlib/parsing: pypackrat.pyc
+Somente em pypy/rpython/rlib/parsing: regexparse.pyc
+Somente em pypy/rpython/rlib/parsing: regex.pyc
+Somente em pypy/rpython/rlib/parsing: tree.pyc
+Somente em pypy/rpython/rlib: rarithmetic.pyc
+Somente em pypy/rpython/rlib: rbigint.pyc
+Somente em pypy/rpython/rlib: rbisect.pyc
+Somente em pypy/rpython/rlib: rcomplex.pyc
+Somente em pypy/rpython/rlib: rdtoa.pyc
+Somente em pypy/rpython/rlib: rdynload.pyc
+Somente em pypy/rpython/rlib: rerased.pyc
+Somente em pypy/rpython/rlib: rfloat.pyc
+Somente em pypy/rpython/rlib: rgc.pyc
+Somente em pypy/rpython/rlib: rgil.pyc
+Somente em pypy/rpython/rlib: rlocale.pyc
+Somente em pypy/rpython/rlib: rmd5.pyc
+Somente em pypy/rpython/rlib: rmmap.pyc
+Somente em pypy/rpython/rlib: rpath.pyc
+Somente em pypy/rpython/rlib: rpoll.pyc
+Somente em pypy/rpython/rlib: rposix.pyc
+Somente em pypy/rpython/rlib: rrandom.pyc
+Somente em pypy/rpython/rlib: rsha.pyc
+Somente em pypy/rpython/rlib: rshrinklist.pyc
+Somente em pypy/rpython/rlib: rsignal.pyc
+Somente em pypy/rpython/rlib: _rsocket_rffi.pyc
+Somente em pypy/rpython/rlib/rsre: __init__.pyc
+Somente em pypy/rpython/rlib/rsre: rsre_char.pyc
+Somente em pypy/rpython/rlib/rsre: rsre_core.pyc
+Somente em pypy/rpython/rlib/rsre: rsre_jit.pyc
+Somente em pypy/rpython/rlib: rstackovf.pyc
+Somente em pypy/rpython/rlib: rstack.pyc
+Somente em pypy/rpython/rlib: rStringIO.pyc
+Somente em pypy/rpython/rlib: rstring.pyc
+Somente em pypy/rpython/rlib/rstruct: error.pyc
+Somente em pypy/rpython/rlib/rstruct: formatiterator.pyc
+Somente em pypy/rpython/rlib/rstruct: ieee.pyc
+Somente em pypy/rpython/rlib/rstruct: __init__.pyc
+Somente em pypy/rpython/rlib/rstruct: nativefmttable.pyc
+Somente em pypy/rpython/rlib/rstruct: runpack.pyc
+Somente em pypy/rpython/rlib/rstruct: standardfmttable.pyc
+Somente em pypy/rpython/rlib/rstruct: unichar.pyc
+Somente em pypy/rpython/rlib: rtermios.pyc
+Somente em pypy/rpython/rlib: rthread.pyc
+Somente em pypy/rpython/rlib: runicode.pyc
+Somente em pypy/rpython/rlib: rurandom.pyc
+Somente em pypy/rpython/rlib: rweaklist.pyc
+Somente em pypy/rpython/rlib: rweakref.pyc
+Somente em pypy/rpython/rlib: _rweakvaldict.pyc
+Somente em pypy/rpython/rlib: rwin32.pyc
+Somente em pypy/rpython/rlib: rzipfile.pyc
+Somente em pypy/rpython/rlib: rzlib.pyc
+Somente em pypy/rpython/rlib: signature.pyc
+Somente em pypy/rpython/rlib: special_value.pyc
+Somente em pypy/rpython/rlib: streamio.pyc
+Somente em pypy/rpython/rlib: types.pyc
+Somente em pypy/rpython/rlib/unicodedata: __init__.pyc
+Somente em pypy/rpython/rlib/unicodedata: unicodedb_3_2_0.pyc
+Somente em pypy/rpython/rlib/unicodedata: unicodedb_5_2_0.pyc
+Somente em pypy/rpython/rlib: unroll.pyc
+Somente em pypy/rpython/rtyper: annlowlevel.pyc
+Somente em pypy/rpython/rtyper: callparse.pyc
+Somente em pypy/rpython/rtyper: controllerentry.pyc
+Somente em pypy/rpython/rtyper: error.pyc
+Somente em pypy/rpython/rtyper: exceptiondata.pyc
+Somente em pypy/rpython/rtyper: extfunc.pyc
+Somente em pypy/rpython/rtyper: extfuncregistry.pyc
+Somente em pypy/rpython/rtyper: extregistry.pyc
+Somente em pypy/rpython/rtyper: __init__.pyc
+Somente em pypy/rpython/rtyper: llannotation.pyc
+Somente em pypy/rpython/rtyper: llinterp.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: __init__.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: ll2ctypes.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: llarena.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: llgroup.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: llheap.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: llmemory.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: lloperation.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: ll_str.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: lltype.pyc
+Somente em pypy/rpython/rtyper/lltypesystem/module: __init__.pyc
+Somente em pypy/rpython/rtyper/lltypesystem/module: ll_math.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: opimpl.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rbuilder.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rbytearray.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rdict.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rffi.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rlist.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rordereddict.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rpbc.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rrange.pyc
+Somente em pypy/rpython/rtyper/lltypesystem: rstr.pyc
+Somente em pypy/rpython/rtyper/module: __init__.pyc
+Somente em pypy/rpython/rtyper/module: ll_os_environ.pyc
+diff -r pypy/rpython/rtyper/module/ll_os.py pypy-2.6.0-src/rpython/rtyper/module/ll_os.py (OK NOT FOUND ????)
+24d23
+< from rpython.translator.platform import is_host_build
+150c149
+<         if not _WIN32 and is_host_build():
+---
+>         if not _WIN32:
+783,785d781
+<         compilation_info = ExternalCompilationInfo(
+<             includes = ['grp.h']
+<         )
+788d783
+<                                        compilation_info=compilation_info,
+1813,1818d1807
+<         if sys.platform.startswith("linux"):
+<             includes = ['pty.h']
+<         elif sys.platform == "darwin":
+<             includes = ['util.h']
+<         else:
+<             includes = []
+1823,1824c1812
+<             compilation_info=ExternalCompilationInfo(libraries=['util'],
+<                                                      includes=includes),
+---
+>             compilation_info=ExternalCompilationInfo(libraries=['util']),
+1845,1850d1832
+<         if sys.platform.startswith("linux"):
+<             includes = ['pty.h']
+<         elif sys.platform == "darwin":
+<             includes = ['util.h']
+<         else:
+<             includes = []
+1855,1856c1837
+<             compilation_info=ExternalCompilationInfo(libraries=['util'],
+<                                                      includes=includes),
+---
+>             compilation_info=ExternalCompilationInfo(libraries=['util']),
+Somente em pypy/rpython/rtyper/module: ll_os.pyc
+Somente em pypy/rpython/rtyper/module: ll_os_stat.pyc
+Somente em pypy/rpython/rtyper/module: ll_time.pyc
+Somente em pypy/rpython/rtyper/module: r_os_stat.pyc
+Somente em pypy/rpython/rtyper/module: support.pyc
+Somente em pypy/rpython/rtyper: normalizecalls.pyc
+Somente em pypy/rpython/rtyper: raddress.pyc
+Somente em pypy/rpython/rtyper: raisingops.pyc
+Somente em pypy/rpython/rtyper: rbool.pyc
+Somente em pypy/rpython/rtyper: rbuilder.pyc
+Somente em pypy/rpython/rtyper: rbuiltin.pyc
+Somente em pypy/rpython/rtyper: rbytearray.pyc
+Somente em pypy/rpython/rtyper: rclass.pyc
+Somente em pypy/rpython/rtyper: rcontrollerentry.pyc
+Somente em pypy/rpython/rtyper: rdict.pyc
+Somente em pypy/rpython/rtyper: rfloat.pyc
+Somente em pypy/rpython/rtyper: rint.pyc
+Somente em pypy/rpython/rtyper: rlist.pyc
+Somente em pypy/rpython/rtyper: rmodel.pyc
+Somente em pypy/rpython/rtyper: rnone.pyc
+Somente em pypy/rpython/rtyper: rpbc.pyc
+Somente em pypy/rpython/rtyper: rptr.pyc
+Somente em pypy/rpython/rtyper: rrange.pyc
+Somente em pypy/rpython/rtyper: rstr.pyc
+Somente em pypy/rpython/rtyper: rtuple.pyc
+Somente em pypy/rpython/rtyper: rtyper.pyc
+Somente em pypy/rpython/rtyper: rvirtualizable.pyc
+Somente em pypy/rpython/rtyper: rweakref.pyc
+Somente em pypy/rpython/rtyper/test: __init__.pyc
+Somente em pypy/rpython/rtyper/test: test_llinterp.pyc
+Somente em pypy/rpython/rtyper/tool: __init__.pyc
+Somente em pypy/rpython/rtyper/tool: rfficache.pyc
+Somente em pypy/rpython/rtyper/tool: rffi_platform.pyc
+Somente em pypy/rpython/rtyper: typesystem.pyc
+Somente em pypy/rpython/tool/algo: color.pyc
+Somente em pypy/rpython/tool/algo: graphlib.pyc
+Somente em pypy/rpython/tool/algo: __init__.pyc
+Somente em pypy/rpython/tool/algo: regalloc.pyc
+Somente em pypy/rpython/tool/algo: sparsemat.pyc
+Somente em pypy/rpython/tool/algo: unionfind.pyc
+Somente em pypy/rpython/tool: ansi_mandelbrot.pyc
+Somente em pypy/rpython/tool: ansi_print.pyc
+Somente em pypy/rpython/tool: descriptor.pyc
+Somente em pypy/rpython/tool: error.pyc
+Somente em pypy/rpython/tool: frozenlist.pyc
+Somente em pypy/rpython/tool: gcc_cache.pyc
+Somente em pypy/rpython/tool: identity_dict.pyc
+Somente em pypy/rpython/tool: __init__.pyc
+Somente em pypy/rpython/tool: leakfinder.pyc
+Somente em pypy/rpython/tool: nullpath.pyc
+Somente em pypy/rpython/tool: pairtype.pyc
+Somente em pypy/rpython/tool: runsubprocess.pyc
+Somente em pypy/rpython/tool: sourcetools.pyc
+Somente em pypy/rpython/tool: stdlib_opcode.pyc
+Somente em pypy/rpython/tool: udir.pyc
+Somente em pypy/rpython/tool: uid.pyc
+Somente em pypy/rpython/tool: version.pyc
+Somente em pypy/rpython/translator/backendopt: all.pyc
+Somente em pypy/rpython/translator/backendopt: canraise.pyc
+Somente em pypy/rpython/translator/backendopt: constfold.pyc
+Somente em pypy/rpython/translator/backendopt: escape.pyc
+Somente em pypy/rpython/translator/backendopt: finalizer.pyc
+Somente em pypy/rpython/translator/backendopt: gilanalysis.pyc
+Somente em pypy/rpython/translator/backendopt: graphanalyze.pyc
+Somente em pypy/rpython/translator/backendopt: __init__.pyc
+Somente em pypy/rpython/translator/backendopt: inline.pyc
+Somente em pypy/rpython/translator/backendopt: innerloop.pyc
+Somente em pypy/rpython/translator/backendopt: mallocprediction.pyc
+Somente em pypy/rpython/translator/backendopt: malloc.pyc
+Somente em pypy/rpython/translator/backendopt: merge_if_blocks.pyc
+Somente em pypy/rpython/translator/backendopt: raisingop2direct_call.pyc
+Somente em pypy/rpython/translator/backendopt: removeassert.pyc
+Somente em pypy/rpython/translator/backendopt: removenoops.pyc
+Somente em pypy/rpython/translator/backendopt: ssa.pyc
+Somente em pypy/rpython/translator/backendopt: stat.pyc
+Somente em pypy/rpython/translator/backendopt: storesink.pyc
+Somente em pypy/rpython/translator/backendopt: support.pyc
+Somente em pypy/rpython/translator/backendopt: writeanalyze.pyc
+Somente em pypy/rpython/translator/c: database.pyc
+Somente em pypy/rpython/translator/c: external.pyc
+Somente em pypy/rpython/translator/c: extfunc.pyc
+diff -r pypy/rpython/translator/c/funcgen.py pypy-2.6.0-src/rpython/translator/c/funcgen.py  (OK)
+833,834c833,834
+<         return 'if ((-%s <= (long)%s) && (((long)%s) < %s)) abort();' % (
+<             "PYPY_POINTER_MIN", expr, expr, "PYPY_POINTER_MIN")
+---
+>         return 'if ((-8192 <= (long)%s) && (((long)%s) < 8192)) abort();' % (
+>             expr, expr)
+Somente em pypy/rpython/translator/c: funcgen.pyc
+Somente em pypy/rpython/translator/c: gc.pyc
+Somente em pypy/rpython/translator/c: genc.pyc
+Somente em pypy/rpython/translator/c: __init__.pyc
+Somente em pypy/rpython/translator/c: node.pyc
+Somente em pypy/rpython/translator/c: primitive.pyc
+diff -r pypy/rpython/translator/c/src/commondefs.h pypy-2.6.0-src/rpython/translator/c/src/commondefs.h  (OK)
+123,129d122
+< 
+< /* The smallest positive value that can be a valid object pointer. */
+< #ifdef EMSCRIPTEN
+< # define PYPY_POINTER_MIN 8
+< #else
+< # define PYPY_POINTER_MIN 8192
+< #endif
+diff -r pypy/rpython/translator/c/src/entrypoint.c pypy-2.6.0-src/rpython/translator/c/src/entrypoint.c  (OK)
+39d38
+<     pypy_asm_stack_bottom();
+40a40
+>     pypy_asm_stack_bottom();
+diff -r pypy/rpython/translator/c/src/stack.h pypy-2.6.0-src/rpython/translator/c/src/stack.h (OK)
+32,35c32,33
+< #if defined(__EMSCRIPTEN__)
+< #  define PYPY_INHIBIT_TAIL_CALL()   /* no raw asm for emscripten */
+< #elif defined(__GNUC__)
+< #  define PYPY_INHIBIT_TAIL_CALL()   asm("/* inhibit_tail_call */") 
+---
+> #ifdef __GNUC__
+> #  define PYPY_INHIBIT_TAIL_CALL()   asm("/* inhibit_tail_call */")
+Somente em pypy/rpython/translator/c: support.pyc
+diff -r pypy/rpython/translator/driver.py pypy-2.6.0-src/rpython/translator/driver.py  (OK)
+523,532d522
+<     # For now, the "JS" backend is actually just the C backend with
+<     # compiler set to `emcc`.  It's neater to expose this as a fully
+<     # separate backend.
+< 
+<     task_database_js = task_database_c
+< 
+<     task_source_js = task_source_c
+< 
+<     task_compile_js = task_compile_c
+< 
+Somente em pypy/rpython/translator: driver.pyc
+Somente em pypy/rpython/translator: exceptiontransform.pyc
+Somente em pypy/rpython/translator: gensupp.pyc
+Somente em pypy/rpython/translator/goal: __init__.pyc
+Somente em pypy/rpython/translator/goal: query.pyc
+Somente em pypy/rpython/translator/goal: timing.pyc
+Somente em pypy/rpython/translator/goal: translate.pyc
+Somente em pypy/rpython/translator: __init__.pyc
+Somente em pypy/rpython/translator/platform: emscripten_platform
+diff -r pypy/rpython/translator/platform/__init__.py pypy-2.6.0-src/rpython/translator/platform/__init__.py (OK)
+338,340d337
+<     elif new_platform == 'emscripten':
+<         from rpython.translator.platform.emscripten_platform import EmscriptenPlatform
+<         return EmscriptenPlatform()
+Somente em pypy/rpython/translator/platform: __init__.pyc
+Somente em pypy/rpython/translator/platform: linux.pyc
+Somente em pypy/rpython/translator/platform: posix.pyc
+Somente em pypy/rpython/translator: simplify.pyc
+Somente em pypy/rpython/translator/tool: cbuild.pyc
+Somente em pypy/rpython/translator/tool: __init__.pyc
+Somente em pypy/rpython/translator/tool: pdbplus.pyc
+Somente em pypy/rpython/translator/tool: taskengine.pyc
+Somente em pypy/rpython/translator: transform.pyc
+Somente em pypy/rpython/translator: translator.pyc
+Somente em pypy/rpython/translator: unsimplify.pyc

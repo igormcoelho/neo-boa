@@ -1,0 +1,1117 @@
+Somente em pypydock/ctypes_configure: cbuild.pyc
+Somente em pypydock/ctypes_configure: configure.pyc
+Somente em pypydock/ctypes_configure: dumpcache.pyc
+Somente em pypydock/ctypes_configure: __init__.pyc
+Somente em pypydock/ctypes_configure: stdoutcapture.pyc
+diff -r pypydock/.gitignore pypy-2.6.0-src/.gitignore
+25,26c25
+< rpython/_cache
+< include/numpy
+---
+> rpython/_cache/
+Somente em pypy-2.6.0-src/: .hg_archival.txt
+diff -r pypydock/.hgtags pypy-2.6.0-src/.hgtags
+16,17d15
+< e03971291f3a0729ecd3ee7fae7ddb0bb82d476c release-2.6.0
+< 295ee98b69288471b0fcf2e0ede82ce5209eb90b release-2.6.0
+Somente em pypydock/lib_pypy/ctypes_config_cache: dumpcache.pyc
+Somente em pypydock/lib_pypy/ctypes_config_cache: __init__.pyc
+Somente em pypydock/lib_pypy/ctypes_config_cache: _locale_32_.py
+Somente em pypydock/lib_pypy/ctypes_config_cache: _locale_cache.py
+Somente em pypydock/lib_pypy/ctypes_config_cache: rebuild.pyc
+Somente em pypydock/lib_pypy/ctypes_config_cache: _resource_32_.py
+Somente em pypydock/lib_pypy/ctypes_config_cache: _resource_cache.py
+Somente em pypydock/lib_pypy: __init__.pyc
+Somente em pypydock/lib_pypy: _structseq.pyc
+Somente em pypydock/lib-python/2.7: __future__.pyc
+diff -r pypydock/lib-python/2.7/test/pystone.py pypy-2.6.0-src/lib-python/2.7/test/pystone.py
+37c37
+< from time import time as clock
+---
+> from time import clock
+Somente em pypydock/lib-python/2.7: types.pyc
+Somente em pypydock/py: _apipkg.pyc
+Somente em pypydock/py: _builtin.pyc
+Somente em pypydock/py/_code: code.pyc
+Somente em pypydock/py/_code: __init__.pyc
+Somente em pypydock/py/_code: _py2traceback.pyc
+Somente em pypydock/py/_code: __pycache__
+Somente em pypydock/py/_code: source.pyc
+Somente em pypydock/py: _error.pyc
+Somente em pypydock/py: __init__.pyc
+Somente em pypydock/py/_io: capture.pyc
+Somente em pypydock/py/_io: __init__.pyc
+Somente em pypydock/py/_io: __pycache__
+Somente em pypydock/py/_io: terminalwriter.pyc
+Somente em pypydock/py/_log: __init__.pyc
+Somente em pypydock/py/_log: log.pyc
+Somente em pypydock/py/_log: __pycache__
+Somente em pypydock/py/_path: common.pyc
+Somente em pypydock/py/_path: __init__.pyc
+Somente em pypydock/py/_path: local.pyc
+Somente em pypydock/py/_path: __pycache__
+Somente em pypydock/py/_process: cmdexec.pyc
+Somente em pypydock/py/_process: __init__.pyc
+Somente em pypydock/py: __pycache__
+Somente em pypydock/py: _std.pyc
+Somente em pypydock/py: _xmlgen.pyc
+Somente em pypydock/: __pycache__
+Somente em pypydock/pypy/config: __init__.pyc
+Somente em pypydock/pypy/config: __pycache__
+diff -r pypydock/pypy/config/pypyoption.py pypy-2.6.0-src/pypy/config/pypyoption.py
+53,59d52
+< working_js_modules = default_modules.copy()
+< working_js_modules.update(dict.fromkeys(
+<     ["js", "_md5", "_sha", "cStringIO", "itertools", "time", "struct",
+<      "array", "binascii", "_collections", "_pypyjson", "_warnings",
+<      "_csv", "unicodedata", "_rawffi"]
+< ))
+< 
+331,334c324
+<     if config.translation.backend == 'js':
+<         modules = working_js_modules.copy()
+<     else:
+<         modules = working_modules.copy()
+---
+>     modules = working_modules.copy()
+Somente em pypydock/pypy/config: pypyoption.pyc
+Somente em pypydock/pypy: conftest.pyc
+diff -r pypydock/pypy/doc/how-to-release.rst pypy-2.6.0-src/pypy/doc/how-to-release.rst
+18c18,19
+< * If needed, make a release branch
+---
+> * At code freeze make a release branch using release-x.x.x in mercurial
+>   and add a release-specific tag
+diff -r pypydock/pypy/doc/release-2.6.0.rst pypy-2.6.0-src/pypy/doc/release-2.6.0.rst
+6c6
+< We are particulary happy to update `cffi`_ to version 1.1, which makes the
+---
+> We are particulary happy to update `cffi`_ to version 1.0, which makes the
+41c41
+< layers and we need help with all of them: `PyPy`_ and `RPython`_ documentation
+---
+> layers and we need help with all of them: `PyPy`_ and `Rpython`_ documentation
+43c43
+< RPython's JIT even better. Nine new people contributed since the last release,
+---
+> Rpython's JIT even better. Nine new people contributed since the last release,
+47c47
+< .. _`RPython`: https://rpython.readthedocs.org
+---
+> .. _`Rpython`: https://rpython.readthedocs.org
+118c118
+< .. _resolved: http://doc.pypy.org/en/latest/whatsnew-2.6.0.html
+---
+> .. _resolved: https://doc.pypy.org/en/latest/whatsnew-2.6.0.html
+diff -r pypydock/pypy/doc/whatsnew-2.6.0.rst pypy-2.6.0-src/pypy/doc/whatsnew-2.6.0.rst
+1,3c1,3
+< ========================
+< What's new in PyPy 2.6.0
+< ========================
+---
+> =======================
+> What's new in PyPy 2.5+
+> =======================
+134,141d133
+< 
+< .. branch: fix-result-types
+< 
+< branch fix-result-types:
+< * Refactor dtype casting and promotion rules for consistency and compatibility
+< with CNumPy.
+< * Refactor ufunc creation.
+< * Implement np.promote_types().
+diff -r pypydock/pypy/doc/whatsnew-head.rst pypy-2.6.0-src/pypy/doc/whatsnew-head.rst
+6c6
+< .. startrev: 91904d5c5188
+---
+> .. startrev: 2ac87a870acf562301840cace411e34c1b96589c
+7a8
+> .. branch: fix-result-types
+8a10,14
+> branch fix-result-types:
+> * Refactor dtype casting and promotion rules for consistency and compatibility
+> with CNumPy.
+> * Refactor ufunc creation.
+> * Implement np.promote_types().
+Somente em pypydock/pypy/goal: __pycache__
+diff -r pypydock/pypy/goal/targetpypystandalone.py pypy-2.6.0-src/pypy/goal/targetpypystandalone.py
+248d247
+<         print("AYGOR if config.translation.thread=", config.translation.thread) #AYGOR
+Somente em pypydock/pypy/goal: targetpypystandalone.pyc
+Somente em pypydock/pypy: __init__.pyc
+Somente em pypydock/pypy/interpreter: argument.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: assemble.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: astbuilder.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: asthelpers.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: ast.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: codegen.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: consts.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: __init__.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: misc.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: optimize.pyc
+Somente em pypydock/pypy/interpreter/astcompiler: symtable.pyc
+Somente em pypydock/pypy/interpreter: baseobjspace.pyc
+Somente em pypydock/pypy/interpreter: debug.pyc
+Somente em pypydock/pypy/interpreter: error.pyc
+Somente em pypydock/pypy/interpreter: eval.pyc
+Somente em pypydock/pypy/interpreter: executioncontext.pyc
+Somente em pypydock/pypy/interpreter: function.pyc
+Somente em pypydock/pypy/interpreter: gateway.pyc
+Somente em pypydock/pypy/interpreter: generator.pyc
+Somente em pypydock/pypy/interpreter: __init__.pyc
+Somente em pypydock/pypy/interpreter: miscutils.pyc
+Somente em pypydock/pypy/interpreter: mixedmodule.pyc
+Somente em pypydock/pypy/interpreter: module.pyc
+Somente em pypydock/pypy/interpreter: nestedscope.pyc
+Somente em pypydock/pypy/interpreter: __pycache__
+Somente em pypydock/pypy/interpreter: pycode.pyc
+Somente em pypydock/pypy/interpreter: pycompiler.pyc
+Somente em pypydock/pypy/interpreter: pyframe.pyc
+Somente em pypydock/pypy/interpreter: pyopcode.pyc
+Somente em pypydock/pypy/interpreter/pyparser: automata.pyc
+Somente em pypydock/pypy/interpreter/pyparser: error.pyc
+Somente em pypydock/pypy/interpreter/pyparser: future.pyc
+Somente em pypydock/pypy/interpreter/pyparser: __init__.pyc
+Somente em pypydock/pypy/interpreter/pyparser: metaparser.pyc
+Somente em pypydock/pypy/interpreter/pyparser: parser.pyc
+Somente em pypydock/pypy/interpreter/pyparser: parsestring.pyc
+Somente em pypydock/pypy/interpreter/pyparser: pygram.pyc
+Somente em pypydock/pypy/interpreter/pyparser: pyparse.pyc
+Somente em pypydock/pypy/interpreter/pyparser: pytokenize.pyc
+Somente em pypydock/pypy/interpreter/pyparser: pytokenizer.pyc
+Somente em pypydock/pypy/interpreter/pyparser: pytoken.pyc
+Somente em pypydock/pypy/interpreter: pytraceback.pyc
+Somente em pypydock/pypy/interpreter: signature.pyc
+Somente em pypydock/pypy/interpreter: special.pyc
+Somente em pypydock/pypy/interpreter: streamutil.pyc
+Somente em pypydock/pypy/interpreter: typedef.pyc
+Somente em pypydock/pypy/interpreter: unicodehelper.pyc
+Somente em pypydock/pypy/module/array: __init__.pyc
+Somente em pypydock/pypy/module/array: interp_array.pyc
+Somente em pypydock/pypy/module/_ast: __init__.pyc
+Somente em pypydock/pypy/module/binascii: __init__.pyc
+Somente em pypydock/pypy/module/binascii: interp_base64.pyc
+Somente em pypydock/pypy/module/binascii: interp_binascii.pyc
+Somente em pypydock/pypy/module/binascii: interp_crc32.pyc
+Somente em pypydock/pypy/module/binascii: interp_hexlify.pyc
+Somente em pypydock/pypy/module/binascii: interp_hqx.pyc
+Somente em pypydock/pypy/module/binascii: interp_qp.pyc
+Somente em pypydock/pypy/module/binascii: interp_uu.pyc
+Somente em pypydock/pypy/module/__builtin__: abstractinst.pyc
+Somente em pypydock/pypy/module/__builtin__: compiling.pyc
+Somente em pypydock/pypy/module/__builtin__: descriptor.pyc
+Somente em pypydock/pypy/module/__builtin__: functional.pyc
+Somente em pypydock/pypy/module/__builtin__: __init__.pyc
+Somente em pypydock/pypy/module/__builtin__: interp_classobj.pyc
+Somente em pypydock/pypy/module/__builtin__: interp_inspect.pyc
+Somente em pypydock/pypy/module/__builtin__: operation.pyc
+Somente em pypydock/pypy/module/__builtin__: state.pyc
+diff -r pypydock/pypy/module/_cffi_backend/ctypeobj.py pypy-2.6.0-src/pypy/module/_cffi_backend/ctypeobj.py
+1d0
+< import sys
+135,136d133
+<                 if (1 << (8*align-2)) > sys.maxint:
+<                     align /= 2
+diff -r pypydock/pypy/module/_cffi_backend/test/test_recompiler.py pypy-2.6.0-src/pypy/module/_cffi_backend/test/test_recompiler.py
+32c32
+<         '#define PyMODINIT_FUNC /*exported*/ void\n'
+---
+>         '#define PyMODINIT_FUNC /*exported*/\n'
+956,968d955
+< 
+<     def test_alignment_of_longlong(self):
+<         import _cffi_backend
+<         BULongLong = _cffi_backend.new_primitive_type('unsigned long long')
+<         x1 = _cffi_backend.alignof(BULongLong)
+<         assert x1 in [4, 8]
+<         #
+<         ffi, lib = self.prepare(
+<             "struct foo_s { unsigned long long x; };",
+<             'test_alignment_of_longlong',
+<             "struct foo_s { unsigned long long x; };")
+<         assert ffi.alignof('unsigned long long') == x1
+<         assert ffi.alignof('struct foo_s') == x1
+Somente em pypydock/pypy/module/cmath: __init__.pyc
+Somente em pypydock/pypy/module/cmath: interp_cmath.pyc
+Somente em pypydock/pypy/module/_codecs: __init__.pyc
+Somente em pypydock/pypy/module/_codecs: interp_codecs.pyc
+Somente em pypydock/pypy/module/_collections: __init__.pyc
+Somente em pypydock/pypy/module/_collections: interp_defaultdict.pyc
+Somente em pypydock/pypy/module/_collections: interp_deque.pyc
+Somente em pypydock/pypy/module/cStringIO: __init__.pyc
+Somente em pypydock/pypy/module/cStringIO: interp_stringio.pyc
+Somente em pypydock/pypy/module/_csv: __init__.pyc
+Somente em pypydock/pypy/module/_csv: interp_csv.pyc
+Somente em pypydock/pypy/module/_csv: interp_reader.pyc
+Somente em pypydock/pypy/module/_csv: interp_writer.pyc
+Somente em pypydock/pypy/module/errno: __init__.pyc
+Somente em pypydock/pypy/module/errno: interp_errno.pyc
+Somente em pypydock/pypy/module/exceptions: __init__.pyc
+Somente em pypydock/pypy/module/exceptions: interp_exceptions.pyc
+Somente em pypydock/pypy/module/fcntl: __init__.pyc
+Somente em pypydock/pypy/module/fcntl: interp_fcntl.pyc
+Somente em pypydock/pypy/module/_file: __init__.pyc
+Somente em pypydock/pypy/module/_file: interp_file.pyc
+Somente em pypydock/pypy/module/_file: interp_stream.pyc
+Somente em pypydock/pypy/module/gc: __init__.pyc
+Somente em pypydock/pypy/module/gc: interp_gc.pyc
+Somente em pypydock/pypy/module/gc: referents.pyc
+Somente em pypydock/pypy/module/imp: importing.pyc
+Somente em pypydock/pypy/module/imp: __init__.pyc
+Somente em pypydock/pypy/module/imp: interp_imp.pyc
+Somente em pypydock/pypy/module: __init__.pyc
+Somente em pypydock/pypy/module/_io: __init__.pyc
+Somente em pypydock/pypy/module/_io: interp_bufferedio.pyc
+Somente em pypydock/pypy/module/_io: interp_bytesio.pyc
+Somente em pypydock/pypy/module/_io: interp_fileio.pyc
+Somente em pypydock/pypy/module/_io: interp_iobase.pyc
+Somente em pypydock/pypy/module/_io: interp_io.pyc
+Somente em pypydock/pypy/module/_io: interp_stringio.pyc
+Somente em pypydock/pypy/module/_io: interp_textio.pyc
+Somente em pypydock/pypy/module/itertools: __init__.pyc
+Somente em pypydock/pypy/module/itertools: interp_itertools.pyc
+Somente em pypydock/pypy/module: js
+Somente em pypydock/pypy/module/marshal: __init__.pyc
+Somente em pypydock/pypy/module/marshal: interp_marshal.pyc
+Somente em pypydock/pypy/module/math: __init__.pyc
+Somente em pypydock/pypy/module/math: interp_math.pyc
+Somente em pypydock/pypy/module/_md5: __init__.pyc
+Somente em pypydock/pypy/module/_md5: interp_md5.pyc
+Somente em pypydock/pypy/module/_minimal_curses: fficurses.pyc
+Somente em pypydock/pypy/module/_minimal_curses: __init__.pyc
+Somente em pypydock/pypy/module/_minimal_curses: interp_curses.pyc
+Somente em pypydock/pypy/module/operator: __init__.pyc
+Somente em pypydock/pypy/module/operator: interp_operator.pyc
+Somente em pypydock/pypy/module/operator: tscmp.pyc
+Somente em pypydock/pypy/module/parser: __init__.pyc
+Somente em pypydock/pypy/module/parser: pyparser.pyc
+Somente em pypydock/pypy/module/_pickle_support: __init__.pyc
+Somente em pypydock/pypy/module/_pickle_support: maker.pyc
+Somente em pypydock/pypy/module/posix: __init__.pyc
+Somente em pypydock/pypy/module/posix: interp_posix.pyc
+Somente em pypydock/pypy/module/__pypy__: bytebuffer.pyc
+Somente em pypydock/pypy/module/__pypy__: __init__.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_builders.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_debug.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_dict.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_identitydict.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_intop.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_magic.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_os.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_signal.pyc
+Somente em pypydock/pypy/module/__pypy__: interp_time.pyc
+Somente em pypydock/pypy/module/pypyjit: hooks.pyc
+Somente em pypydock/pypy/module/pypyjit: __init__.pyc
+Somente em pypydock/pypy/module/pypyjit: interp_jit.pyc
+Somente em pypydock/pypy/module/pypyjit: interp_resop.pyc
+Somente em pypydock/pypy/module/pypyjit: policy.pyc
+Somente em pypydock/pypy/module/_pypyjson: __init__.pyc
+Somente em pypydock/pypy/module/_pypyjson: interp_decoder.pyc
+Somente em pypydock/pypy/module/_pypyjson: interp_encoder.pyc
+Somente em pypydock/pypy/module/_random: __init__.pyc
+Somente em pypydock/pypy/module/_random: interp_random.pyc
+Somente em pypydock/pypy/module/_rawffi/alt: __init__.pyc
+Somente em pypydock/pypy/module/_rawffi/alt: interp_ffitype.pyc
+Somente em pypydock/pypy/module/_rawffi/alt: interp_funcptr.pyc
+Somente em pypydock/pypy/module/_rawffi/alt: interp_struct.pyc
+Somente em pypydock/pypy/module/_rawffi/alt: type_converter.pyc
+Somente em pypydock/pypy/module/_rawffi: array.pyc
+Somente em pypydock/pypy/module/_rawffi: buffer.pyc
+Somente em pypydock/pypy/module/_rawffi: callback.pyc
+Somente em pypydock/pypy/module/_rawffi: __init__.pyc
+Somente em pypydock/pypy/module/_rawffi: interp_exit.pyc
+Somente em pypydock/pypy/module/_rawffi: interp_rawffi.pyc
+Somente em pypydock/pypy/module/_rawffi: structure.pyc
+Somente em pypydock/pypy/module/_rawffi: tracker.pyc
+Somente em pypydock/pypy/module/select: __init__.pyc
+Somente em pypydock/pypy/module/select: interp_epoll.pyc
+Somente em pypydock/pypy/module/select: interp_select.pyc
+Somente em pypydock/pypy/module/_sha: __init__.pyc
+Somente em pypydock/pypy/module/_sha: interp_sha.pyc
+Somente em pypydock/pypy/module/signal: __init__.pyc
+Somente em pypydock/pypy/module/signal: interp_signal.pyc
+Somente em pypydock/pypy/module/_sre: __init__.pyc
+Somente em pypydock/pypy/module/_sre: interp_sre.pyc
+Somente em pypydock/pypy/module/struct: formatiterator.pyc
+Somente em pypydock/pypy/module/struct: __init__.pyc
+Somente em pypydock/pypy/module/struct: interp_struct.pyc
+Somente em pypydock/pypy/module/symbol: __init__.pyc
+Somente em pypydock/pypy/module/sys: currentframes.pyc
+Somente em pypydock/pypy/module/sys: hook.pyc
+Somente em pypydock/pypy/module/sys: initpath.pyc
+Somente em pypydock/pypy/module/sys: __init__.pyc
+Somente em pypydock/pypy/module/sys: interp_encoding.pyc
+Somente em pypydock/pypy/module/sys: state.pyc
+Somente em pypydock/pypy/module/sys: system.pyc
+Somente em pypydock/pypy/module/sys: version.pyc
+Somente em pypydock/pypy/module/sys: vm.pyc
+Somente em pypydock/pypy/module/termios: __init__.pyc
+Somente em pypydock/pypy/module/termios: interp_termios.pyc
+Somente em pypydock/pypy/module/_testing: __init__.pyc
+Somente em pypydock/pypy/module/test_lib_pypy: test_cstringio.py
+Somente em pypy-2.6.0-src/pypy/module/test_lib_pypy: test_cStringIO.py
+diff -r pypydock/pypy/module/test_lib_pypy/test_curses.py pypy-2.6.0-src/pypy/module/test_lib_pypy/test_curses.py
+9c9
+< # with "pypy py.test -A" and _curses_build.py has been run with pypy.
+---
+> # with "pypy py.test -A".
+11,14c11,13
+<     from lib_pypy import _curses_cffi
+< except ImportError:
+<     # On CPython, "pip install cffi".  On old PyPy's, no chance
+<     pytest.skip("install cffi and run lib_pypy/_curses_build.py manually first")
+---
+>     from lib_pypy import cffi; cffi.FFI()
+> except (ImportError, AssertionError), e:
+>     pytest.skip("no cffi module or wrong version (%s)" % (e,))
+diff -r pypydock/pypy/module/test_lib_pypy/test_sqlite3.py pypy-2.6.0-src/pypy/module/test_lib_pypy/test_sqlite3.py
+316c316
+<             from lib_pypy import _sqlite3_cffi
+---
+>             import _cffi_backend
+319,320c319
+<             pytest.skip("install cffi and run lib_pypy/_sqlite3_build.py "
+<                         "manually first")
+---
+>             pytest.skip("_sqlite3 requires _cffi_backend to be installed")
+Somente em pypydock/pypy/module/thread: error.pyc
+Somente em pypydock/pypy/module/thread: gil.pyc
+Somente em pypydock/pypy/module/thread: __init__.pyc
+Somente em pypydock/pypy/module/thread: os_local.pyc
+Somente em pypydock/pypy/module/thread: os_lock.pyc
+Somente em pypydock/pypy/module/thread: os_thread.pyc
+Somente em pypydock/pypy/module/thread: threadlocals.pyc
+Somente em pypydock/pypy/module/time: __init__.pyc
+Somente em pypydock/pypy/module/time: interp_time.pyc
+Somente em pypydock/pypy/module/token: __init__.pyc
+Somente em pypydock/pypy/module/unicodedata: __init__.pyc
+Somente em pypydock/pypy/module/unicodedata: interp_ucd.pyc
+Somente em pypydock/pypy/module/_warnings: __init__.pyc
+Somente em pypydock/pypy/module/_warnings: interp_warnings.pyc
+Somente em pypydock/pypy/module/_weakref: __init__.pyc
+Somente em pypydock/pypy/module/_weakref: interp__weakref.pyc
+Somente em pypydock/pypy/module/zlib: __init__.pyc
+Somente em pypydock/pypy/module/zlib: interp_zlib.pyc
+Somente em pypydock/pypy/objspace: descroperation.pyc
+Somente em pypydock/pypy/objspace: __init__.pyc
+Somente em pypydock/pypy/objspace/std: basestringtype.pyc
+Somente em pypydock/pypy/objspace/std: boolobject.pyc
+Somente em pypydock/pypy/objspace/std: bufferobject.pyc
+Somente em pypydock/pypy/objspace/std: bytearrayobject.pyc
+Somente em pypydock/pypy/objspace/std: bytesobject.pyc
+Somente em pypydock/pypy/objspace/std: callmethod.pyc
+Somente em pypydock/pypy/objspace/std: celldict.pyc
+Somente em pypydock/pypy/objspace/std: complexobject.pyc
+Somente em pypydock/pypy/objspace/std: dictmultiobject.pyc
+Somente em pypydock/pypy/objspace/std: dictproxyobject.pyc
+Somente em pypydock/pypy/objspace/std: floatobject.pyc
+Somente em pypydock/pypy/objspace/std: formatting.pyc
+Somente em pypydock/pypy/objspace/std: frame.pyc
+Somente em pypydock/pypy/objspace/std: identitydict.pyc
+Somente em pypydock/pypy/objspace/std: __init__.pyc
+Somente em pypydock/pypy/objspace/std: intobject.pyc
+Somente em pypydock/pypy/objspace/std: iterobject.pyc
+Somente em pypydock/pypy/objspace/std: kwargsdict.pyc
+Somente em pypydock/pypy/objspace/std: listobject.pyc
+Somente em pypydock/pypy/objspace/std: longobject.pyc
+Somente em pypydock/pypy/objspace/std: mapdict.pyc
+Somente em pypydock/pypy/objspace/std: marshal_impl.pyc
+Somente em pypydock/pypy/objspace/std: memoryobject.pyc
+Somente em pypydock/pypy/objspace/std: newformat.pyc
+Somente em pypydock/pypy/objspace/std: noneobject.pyc
+Somente em pypydock/pypy/objspace/std: objectobject.pyc
+Somente em pypydock/pypy/objspace/std: objspace.pyc
+Somente em pypydock/pypy/objspace/std: proxyobject.pyc
+Somente em pypydock/pypy/objspace/std: setobject.pyc
+Somente em pypydock/pypy/objspace/std: sliceobject.pyc
+Somente em pypydock/pypy/objspace/std: smalllongobject.pyc
+Somente em pypydock/pypy/objspace/std: specialisedtupleobject.pyc
+Somente em pypydock/pypy/objspace/std: strbufobject.pyc
+Somente em pypydock/pypy/objspace/std: stringmethods.pyc
+Somente em pypydock/pypy/objspace/std: transparent.pyc
+Somente em pypydock/pypy/objspace/std: tupleobject.pyc
+Somente em pypydock/pypy/objspace/std: typeobject.pyc
+Somente em pypydock/pypy/objspace/std: unicodeobject.pyc
+Somente em pypydock/pypy/objspace/std: util.pyc
+Somente em pypydock/pypy: __pycache__
+Somente em pypydock/pypy/tool: ann_override.pyc
+Somente em pypydock/pypy/tool: __init__.pyc
+Somente em pypydock/pypy/tool: lib_pypy.pyc
+Somente em pypydock/pypy/tool: option.pyc
+Somente em pypydock/pypy/tool: __pycache__
+Somente em pypydock/pypy/tool: stdlib___future__.pyc
+Somente em pypydock/pypy/tool: stdlib_opcode.pyc
+Somente em pypydock/: pypy-c
+Somente em pypydock/_pytest/assertion: __init__.pyc
+Somente em pypydock/_pytest/assertion: __pycache__
+Somente em pypydock/_pytest/assertion: util.pyc
+Somente em pypydock/_pytest: capture.pyc
+Somente em pypydock/_pytest: config.pyc
+Somente em pypydock/_pytest: core.pyc
+Somente em pypydock/_pytest: doctest.pyc
+Somente em pypydock/_pytest: genscript.pyc
+Somente em pypydock/_pytest: helpconfig.pyc
+Somente em pypydock/_pytest: hookspec.pyc
+Somente em pypydock/_pytest: __init__.pyc
+Somente em pypydock/_pytest: junitxml.pyc
+Somente em pypydock/_pytest: main.pyc
+Somente em pypydock/_pytest: mark.pyc
+Somente em pypydock/_pytest: monkeypatch.pyc
+Somente em pypydock/_pytest: nose.pyc
+Somente em pypydock/_pytest: pastebin.pyc
+Somente em pypydock/_pytest: pdb.pyc
+Somente em pypydock/_pytest: __pycache__
+Somente em pypydock/_pytest: python.pyc
+Somente em pypydock/_pytest: recwarn.pyc
+Somente em pypydock/_pytest: resultlog.pyc
+Somente em pypydock/_pytest: runner.pyc
+Somente em pypydock/_pytest: skipping.pyc
+Somente em pypydock/_pytest: terminal.pyc
+Somente em pypydock/_pytest: tmpdir.pyc
+Somente em pypydock/_pytest: unittest.pyc
+Somente em pypydock/: pytest.pyc
+Somente em pypydock/rpython/annotator: annrpython.pyc
+Somente em pypydock/rpython/annotator: argument.pyc
+Somente em pypydock/rpython/annotator: binaryop.pyc
+Somente em pypydock/rpython/annotator: bookkeeper.pyc
+Somente em pypydock/rpython/annotator: builtin.pyc
+Somente em pypydock/rpython/annotator: classdef.pyc
+Somente em pypydock/rpython/annotator: description.pyc
+Somente em pypydock/rpython/annotator: dictdef.pyc
+Somente em pypydock/rpython/annotator: exception.pyc
+Somente em pypydock/rpython/annotator: __init__.pyc
+Somente em pypydock/rpython/annotator: listdef.pyc
+Somente em pypydock/rpython/annotator: model.pyc
+Somente em pypydock/rpython/annotator: policy.pyc
+Somente em pypydock/rpython/annotator: __pycache__
+Somente em pypydock/rpython/annotator: signature.pyc
+Somente em pypydock/rpython/annotator: specialize.pyc
+Somente em pypydock/rpython/annotator: unaryop.pyc
+Somente em pypydock/rpython: _cache
+diff -r pypydock/rpython/config/config.py pypy-2.6.0-src/rpython/config/config.py
+226d225
+<         print("BACON",value)
+262d260
+<         print("ChoiceOption::init=",values)
+281d278
+<         print("Choice=",value)
+400d396
+<         print("StrOpt=",value)
+419d414
+<         print("ArbOpt=",value)
+637a633
+> 
+Somente em pypydock/rpython/config: config.pyc
+Somente em pypydock/rpython/config: __init__.pyc
+Somente em pypydock/rpython/config: __pycache__
+Somente em pypydock/rpython/config: support.pyc
+diff -r pypydock/rpython/config/translationoption.py pypy-2.6.0-src/rpython/config/translationoption.py
+39d38
+<     'emscripten',
+50c49
+<                  ["c", "js"], default="c",
+---
+>                  ["c"], default="c",
+53,54d51
+<                      "js":     [("translation.type_system", "lltype"),
+<                                 ("translation.platform", "emscripten")],
+277,282d273
+<                  requires={"emscripten": [
+<                              ("translation.gcrootfinder", "shadowstack"),
+<                              ("translation.shared", False),
+<                              ("translation.thread", False),
+<                              ("translation.no__thread", True),
+<                            ]},
+Somente em pypydock/rpython/config: translationoption.pyc
+diff -r pypydock/rpython/conftest.py pypy-2.6.0-src/rpython/conftest.py
+55,57c55,56
+< # XXX TODO: re-enable this when asmjs jit backend stops leaking
+< #def pytest_addhooks(pluginmanager):
+< #    pluginmanager.register(LeakFinder())
+---
+> def pytest_addhooks(pluginmanager):
+>     pluginmanager.register(LeakFinder())
+Somente em pypydock/rpython: conftest.pyc
+Somente em pypydock/rpython/flowspace: argument.pyc
+Somente em pypydock/rpython/flowspace: bytecode.pyc
+Somente em pypydock/rpython/flowspace: flowcontext.pyc
+Somente em pypydock/rpython/flowspace: framestate.pyc
+Somente em pypydock/rpython/flowspace: generator.pyc
+Somente em pypydock/rpython/flowspace: __init__.pyc
+Somente em pypydock/rpython/flowspace: model.pyc
+Somente em pypydock/rpython/flowspace: objspace.pyc
+Somente em pypydock/rpython/flowspace: operation.pyc
+Somente em pypydock/rpython/flowspace: __pycache__
+Somente em pypydock/rpython/flowspace: pygraph.pyc
+Somente em pypydock/rpython/flowspace: specialcase.pyc
+Somente em pypydock/rpython: __init__.pyc
+Somente em pypydock/rpython/jit/backend: asmjs
+diff -r pypydock/rpython/jit/backend/detect_cpu.py pypy-2.6.0-src/rpython/jit/backend/detect_cpu.py
+18d17
+< MODEL_ASMJS       = 'asmjs'
+30d28
+<         MODEL_ASMJS:  ['__EMSCRIPTEN__'],
+115,116d112
+<     elif backend_name == MODEL_ASMJS:
+<         return "rpython.jit.backend.asmjs.runner", "CPU_ASMJS"
+Somente em pypydock/rpython/jit/backend: detect_cpu.pyc
+Somente em pypydock/rpython/jit/backend: hlinfo.pyc
+Somente em pypydock/rpython/jit/backend: __init__.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: asmmemmgr.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: assembler.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: callbuilder.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: codemap.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: descr.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: ffisupport.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: gcmap.pyc
+diff -r pypydock/rpython/jit/backend/llsupport/gc.py pypy-2.6.0-src/rpython/jit/backend/llsupport/gc.py
+130,142d129
+<     def round_up_for_allocation(self, size):
+<         if not self.round_up:
+<             return size
+<         if self.translate_support_code:
+<             from rpython.rtyper.lltypesystem import llarena
+<             return llarena.round_up_for_allocation(
+<                 size, self.minimal_size_in_nursery)
+<         else:
+<             # non-translated: do it manually
+<             # assume that "self.gc_ll_descr.minimal_size_in_nursery" is 2 WORDs
+<             size = max(size, 2 * WORD)
+<             return (size + WORD-1) & ~(WORD-1) # round up
+< 
+343,344c330
+<         size = self.round_up_for_allocation(sizedescr.size)
+<         return self.malloc_fixedsize(size)
+---
+>         return self.malloc_fixedsize(sizedescr.size)
+611d596
+<         size = self.round_up_for_allocation(sizedescr.size)
+613c598
+<                                                type_id, size,
+---
+>                                                type_id, sizedescr.size,
+Somente em pypydock/rpython/jit/backend/llsupport: gc.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: __init__.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: jitframe.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: llerrno.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: llmodel.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: memcpy.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: regalloc.pyc
+diff -r pypydock/rpython/jit/backend/llsupport/rewrite.py pypy-2.6.0-src/rpython/jit/backend/llsupport/rewrite.py
+511c511
+<         size = self.gc_ll_descr.round_up_for_allocation(size)
+---
+>         size = self.round_up_for_allocation(size)
+Somente em pypydock/rpython/jit/backend/llsupport: rewrite.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: support.pyc
+Somente em pypydock/rpython/jit/backend/llsupport: symbolic.pyc
+diff -r pypydock/rpython/jit/backend/llsupport/test/test_gc_integration.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/test_gc_integration.py
+93,94d92
+<         elif self.cpu.backend_name.startswith('asmjs'):
+<             assert nos == [0, 2, 3]
+331,333c329
+<                 exp_idx = self.cpu.JITFRAME_FIXED_SIZE - 32 * idx
+<                 if not self.cpu.backend_name.startswith('asmjs'):
+<                     exp_idx += 1 # +1 from i0
+---
+>                 exp_idx = self.cpu.JITFRAME_FIXED_SIZE - 32 * idx + 1 # +1 from i0
+361,364c357
+<             if self.cpu.backend_name.startswith('asmjs'):
+<                 assert len(x) == 1
+<                 assert bin(x[0]).count('1') == 16
+<             elif self.cpu.IS_64_BIT:
+---
+>             if self.cpu.IS_64_BIT:
+651,652d643
+<             elif self.cpu.backend_name.startswith('asmjs'):
+<                 assert gcmap == [0, 1, 2]
+699c690
+<         assert gcmap[0] <= self.cpu.JITFRAME_FIXED_SIZE
+---
+>         assert gcmap[0] < self.cpu.JITFRAME_FIXED_SIZE
+849,850c840
+<             if self.cpu.backend_name != 'asmjs':
+<                 assert frame.jf_gcmap[0] & 31 == 0
+---
+>             assert frame.jf_gcmap[0] & 31 == 0
+895,896c885
+<             if self.cpu.backend_name != 'asmjs':
+<                 assert frame.jf_gcmap[0] & 31 == 0
+---
+>             assert frame.jf_gcmap[0] & 31 == 0
+diff -r pypydock/rpython/jit/backend/llsupport/test/test_regalloc_integration.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/test_regalloc_integration.py
+120,123c120
+<         try:
+<             regalloc = self.cpu.build_regalloc()
+<         except AttributeError:
+<             return None
+---
+>         regalloc = self.cpu.build_regalloc()
+412,414c409,410
+<         if regalloc is not None:
+<             assert len(regalloc.rm.reg_bindings) == 0
+<             assert len(regalloc.fm.bindings) == 4
+---
+>         assert len(regalloc.rm.reg_bindings) == 0
+>         assert len(regalloc.fm.bindings) == 4
+diff -r pypydock/rpython/jit/backend/llsupport/test/zrpy_gc_test.py pypy-2.6.0-src/rpython/jit/backend/llsupport/test/zrpy_gc_test.py
+83d82
+<     from rpython.translator.platform import platform, is_host_build
+88,89d86
+<     if not is_host_build():
+<         t.platform = platform
+Somente em pypydock/rpython/jit/backend: model.pyc
+Somente em pypydock/rpython/jit/backend/x86: arch.pyc
+Somente em pypydock/rpython/jit/backend/x86: assembler.pyc
+Somente em pypydock/rpython/jit/backend/x86: callbuilder.pyc
+Somente em pypydock/rpython/jit/backend/x86: codebuf.pyc
+Somente em pypydock/rpython/jit/backend/x86: detect_sse2.pyc
+Somente em pypydock/rpython/jit/backend/x86: __init__.pyc
+Somente em pypydock/rpython/jit/backend/x86: jump.pyc
+Somente em pypydock/rpython/jit/backend/x86: profagent.pyc
+Somente em pypydock/rpython/jit/backend/x86: regalloc.pyc
+Somente em pypydock/rpython/jit/backend/x86: regloc.pyc
+Somente em pypydock/rpython/jit/backend/x86: runner.pyc
+Somente em pypydock/rpython/jit/backend/x86: rx86.pyc
+Somente em pypydock/rpython/jit/backend/x86: support.pyc
+Somente em pypydock/rpython/jit/backend/x86: valgrind.pyc
+Somente em pypydock/rpython/jit/codewriter: assembler.pyc
+Somente em pypydock/rpython/jit/codewriter: call.pyc
+Somente em pypydock/rpython/jit/codewriter: codewriter.pyc
+Somente em pypydock/rpython/jit/codewriter: effectinfo.pyc
+Somente em pypydock/rpython/jit/codewriter: flatten.pyc
+Somente em pypydock/rpython/jit/codewriter: format.pyc
+Somente em pypydock/rpython/jit/codewriter: heaptracker.pyc
+Somente em pypydock/rpython/jit/codewriter: __init__.pyc
+Somente em pypydock/rpython/jit/codewriter: jitcode.pyc
+Somente em pypydock/rpython/jit/codewriter: jtransform.pyc
+Somente em pypydock/rpython/jit/codewriter: liveness.pyc
+Somente em pypydock/rpython/jit/codewriter: longlong.pyc
+Somente em pypydock/rpython/jit/codewriter: policy.pyc
+Somente em pypydock/rpython/jit/codewriter: regalloc.pyc
+Somente em pypydock/rpython/jit/codewriter: support.pyc
+Somente em pypydock/rpython/jit: __init__.pyc
+Somente em pypydock/rpython/jit/metainterp: blackhole.pyc
+Somente em pypydock/rpython/jit/metainterp: compile.pyc
+Somente em pypydock/rpython/jit/metainterp: counter.pyc
+Somente em pypydock/rpython/jit/metainterp: executor.pyc
+Somente em pypydock/rpython/jit/metainterp: gc.pyc
+Somente em pypydock/rpython/jit/metainterp: greenfield.pyc
+Somente em pypydock/rpython/jit/metainterp: heapcache.pyc
+diff -r pypydock/rpython/jit/metainterp/history.py pypy-2.6.0-src/rpython/jit/metainterp/history.py
+154,156c154
+<     _attrs_ = ('adr_jump_offset', 'rd_locs', 'rd_loop_token',
+<                '_asmjs_block', '_asmjs_faillocs', '_asmjs_failkinds',
+<                '_asmjs_failvars', '_asmjs_hasexc', '_asmjs_gcmap')
+---
+>     _attrs_ = ('adr_jump_offset', 'rd_locs', 'rd_loop_token')
+Somente em pypydock/rpython/jit/metainterp: history.pyc
+Somente em pypydock/rpython/jit/metainterp: __init__.pyc
+Somente em pypydock/rpython/jit/metainterp: inliner.pyc
+Somente em pypydock/rpython/jit/metainterp: jitdriver.pyc
+Somente em pypydock/rpython/jit/metainterp: jitexc.pyc
+Somente em pypydock/rpython/jit/metainterp: jitprof.pyc
+Somente em pypydock/rpython/jit/metainterp: logger.pyc
+Somente em pypydock/rpython/jit/metainterp: memmgr.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: earlyforce.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: generalize.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: heap.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: __init__.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: intbounds.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: intutils.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: optimizer.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: pure.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: rawbuffer.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: rewrite.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: simplify.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: unroll.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: util.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: virtualize.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: virtualstate.pyc
+Somente em pypydock/rpython/jit/metainterp/optimizeopt: vstring.pyc
+Somente em pypydock/rpython/jit/metainterp: optimize.pyc
+diff -r pypydock/rpython/jit/metainterp/pyjitpl.py pypy-2.6.0-src/rpython/jit/metainterp/pyjitpl.py
+1533,1534c1533,1534
+<             fnaddr = sd.cpu.ts.getaddr_for_box(funcbox)
+<             jitcode = sd.bytecode_for_address(fnaddr, calldescr)
+---
+>             key = sd.cpu.ts.getaddr_for_box(funcbox)
+>             jitcode = sd.bytecode_for_address(key)
+1664c1664
+<     def bytecode_for_address(self, fnaddress, calldescr):
+---
+>     def bytecode_for_address(self, fnaddress):
+1673,1675c1673,1674
+<                     key = self._fn_cache_key(jitcode.fnaddr, jitcode.calldescr)
+<                     assert key not in d
+<                     d[key] = jitcode
+---
+>                     assert jitcode.fnaddr not in d
+>                     d[jitcode.fnaddr] = jitcode
+1677,1678c1676
+<             key = self._fn_cache_key(fnaddress, calldescr)
+<             return d.get(key, None)
+---
+>             return d.get(fnaddress, None)
+1680d1677
+<             key = self._fn_cache_key(fnaddress, calldescr)
+1682,1683c1679
+<                 jckey = self._fn_cache_key(jitcode.fnaddr, jitcode.calldescr)
+<                 if key == jckey:
+---
+>                 if jitcode.fnaddr == fnaddress:
+1686,1688d1681
+< 
+<     def _fn_cache_key(self, fnaddr, calldescr):
+<         return (fnaddr, calldescr.get_result_type(), calldescr.get_arg_types())
+Somente em pypydock/rpython/jit/metainterp: pyjitpl.pyc
+Somente em pypydock/rpython/jit/metainterp: quasiimmut.pyc
+Somente em pypydock/rpython/jit/metainterp: resoperation.pyc
+Somente em pypydock/rpython/jit/metainterp: resume.pyc
+Somente em pypydock/rpython/jit/metainterp: typesystem.pyc
+Somente em pypydock/rpython/jit/metainterp: virtualizable.pyc
+Somente em pypydock/rpython/jit/metainterp: virtualref.pyc
+Somente em pypydock/rpython/jit/metainterp: walkvirtual.pyc
+Somente em pypydock/rpython/jit/metainterp: warmspot.pyc
+Somente em pypydock/rpython/jit/metainterp: warmstate.pyc
+Somente em pypydock/rpython/memory/gc: base.pyc
+Somente em pypydock/rpython/memory/gc: env.pyc
+Somente em pypydock/rpython/memory/gc: incminimark.pyc
+Somente em pypydock/rpython/memory/gc: __init__.pyc
+Somente em pypydock/rpython/memory/gc: inspector.pyc
+Somente em pypydock/rpython/memory/gc: minimarkpage.pyc
+Somente em pypydock/rpython/memory: gcheader.pyc
+Somente em pypydock/rpython/memory/gctransform: asmgcroot.pyc
+Somente em pypydock/rpython/memory/gctransform: framework.pyc
+Somente em pypydock/rpython/memory/gctransform: __init__.pyc
+Somente em pypydock/rpython/memory/gctransform: log.pyc
+Somente em pypydock/rpython/memory/gctransform: shadowstack.pyc
+Somente em pypydock/rpython/memory/gctransform: support.pyc
+Somente em pypydock/rpython/memory/gctransform: transform.pyc
+Somente em pypydock/rpython/memory: gctypelayout.pyc
+Somente em pypydock/rpython/memory: __init__.pyc
+Somente em pypydock/rpython/memory: lldict.pyc
+Somente em pypydock/rpython/memory: lltypelayout.pyc
+Somente em pypydock/rpython/memory: support.pyc
+Somente em pypydock/rpython: __pycache__
+Somente em pypydock/rpython/rlib: buffer.pyc
+Somente em pypydock/rpython/rlib: cache.pyc
+Somente em pypydock/rpython/rlib: clibffi.pyc
+Somente em pypydock/rpython/rlib: constant.pyc
+Somente em pypydock/rpython/rlib: debug.pyc
+Somente em pypydock/rpython/rlib: entrypoint.pyc
+Somente em pypydock/rpython/rlib: exports.pyc
+Somente em pypydock/rpython/rlib: __init__.pyc
+Somente em pypydock/rpython/rlib: jit_hooks.pyc
+Somente em pypydock/rpython/rlib: jit_libffi.pyc
+Somente em pypydock/rpython/rlib: jit.pyc
+Somente em pypydock/rpython/rlib: _jit_vref.pyc
+Somente em pypydock/rpython/rlib: libffi.pyc
+Somente em pypydock/rpython/rlib: listsort.pyc
+Somente em pypydock/rpython/rlib: longlong2float.pyc
+Somente em pypydock/rpython/rlib: nonconst.pyc
+Somente em pypydock/rpython/rlib: objectmodel.pyc
+Somente em pypydock/rpython/rlib/parsing: codebuilder.pyc
+Somente em pypydock/rpython/rlib/parsing: deterministic.pyc
+Somente em pypydock/rpython/rlib/parsing: ebnfparse.pyc
+Somente em pypydock/rpython/rlib/parsing: __init__.pyc
+Somente em pypydock/rpython/rlib/parsing: lexer.pyc
+Somente em pypydock/rpython/rlib/parsing: makepackrat.pyc
+Somente em pypydock/rpython/rlib/parsing: parsing.pyc
+Somente em pypydock/rpython/rlib/parsing: pypackrat.pyc
+Somente em pypydock/rpython/rlib/parsing: regexparse.pyc
+Somente em pypydock/rpython/rlib/parsing: regex.pyc
+Somente em pypydock/rpython/rlib/parsing: tree.pyc
+Somente em pypydock/rpython/rlib: __pycache__
+Somente em pypydock/rpython/rlib: rarithmetic.pyc
+Somente em pypydock/rpython/rlib: rbigint.pyc
+Somente em pypydock/rpython/rlib: rbisect.pyc
+Somente em pypydock/rpython/rlib: rcomplex.pyc
+Somente em pypydock/rpython/rlib: rdtoa.pyc
+Somente em pypydock/rpython/rlib: rdynload.pyc
+Somente em pypydock/rpython/rlib: rerased.pyc
+Somente em pypydock/rpython/rlib: rfloat.pyc
+Somente em pypydock/rpython/rlib: rgc.pyc
+Somente em pypydock/rpython/rlib: rgil.pyc
+Somente em pypydock/rpython/rlib: rlocale.pyc
+Somente em pypydock/rpython/rlib: rmd5.pyc
+Somente em pypydock/rpython/rlib: rmmap.pyc
+Somente em pypydock/rpython/rlib: rpath.pyc
+Somente em pypydock/rpython/rlib: rpoll.pyc
+Somente em pypydock/rpython/rlib: rposix.pyc
+Somente em pypydock/rpython/rlib: rrandom.pyc
+Somente em pypydock/rpython/rlib: rsha.pyc
+Somente em pypydock/rpython/rlib: rshrinklist.pyc
+Somente em pypydock/rpython/rlib: rsignal.pyc
+Somente em pypydock/rpython/rlib: _rsocket_rffi.pyc
+Somente em pypydock/rpython/rlib/rsre: __init__.pyc
+Somente em pypydock/rpython/rlib/rsre: rsre_char.pyc
+Somente em pypydock/rpython/rlib/rsre: rsre_core.pyc
+Somente em pypydock/rpython/rlib/rsre: rsre_jit.pyc
+Somente em pypydock/rpython/rlib: rstackovf.pyc
+Somente em pypydock/rpython/rlib: rstack.pyc
+Somente em pypydock/rpython/rlib: rStringIO.pyc
+Somente em pypydock/rpython/rlib: rstring.pyc
+Somente em pypydock/rpython/rlib/rstruct: error.pyc
+Somente em pypydock/rpython/rlib/rstruct: formatiterator.pyc
+Somente em pypydock/rpython/rlib/rstruct: ieee.pyc
+Somente em pypydock/rpython/rlib/rstruct: __init__.pyc
+Somente em pypydock/rpython/rlib/rstruct: nativefmttable.pyc
+Somente em pypydock/rpython/rlib/rstruct: runpack.pyc
+Somente em pypydock/rpython/rlib/rstruct: standardfmttable.pyc
+Somente em pypydock/rpython/rlib/rstruct: unichar.pyc
+Somente em pypydock/rpython/rlib: rtermios.pyc
+Somente em pypydock/rpython/rlib: rthread.pyc
+Somente em pypydock/rpython/rlib: runicode.pyc
+Somente em pypydock/rpython/rlib: rurandom.pyc
+Somente em pypydock/rpython/rlib: rweaklist.pyc
+Somente em pypydock/rpython/rlib: rweakref.pyc
+Somente em pypydock/rpython/rlib: _rweakvaldict.pyc
+Somente em pypydock/rpython/rlib: rwin32.pyc
+Somente em pypydock/rpython/rlib: rzipfile.pyc
+Somente em pypydock/rpython/rlib: rzlib.pyc
+Somente em pypydock/rpython/rlib: signature.pyc
+Somente em pypydock/rpython/rlib: special_value.pyc
+Somente em pypydock/rpython/rlib: streamio.pyc
+Somente em pypydock/rpython/rlib: types.pyc
+Somente em pypydock/rpython/rlib/unicodedata: __init__.pyc
+Somente em pypydock/rpython/rlib/unicodedata: __pycache__
+Somente em pypydock/rpython/rlib/unicodedata: unicodedb_3_2_0.pyc
+Somente em pypydock/rpython/rlib/unicodedata: unicodedb_5_2_0.pyc
+Somente em pypydock/rpython/rlib: unroll.pyc
+Somente em pypydock/rpython/rtyper: annlowlevel.pyc
+Somente em pypydock/rpython/rtyper: callparse.pyc
+Somente em pypydock/rpython/rtyper: controllerentry.pyc
+Somente em pypydock/rpython/rtyper: error.pyc
+Somente em pypydock/rpython/rtyper: exceptiondata.pyc
+Somente em pypydock/rpython/rtyper: extfunc.pyc
+Somente em pypydock/rpython/rtyper: extfuncregistry.pyc
+Somente em pypydock/rpython/rtyper: extregistry.pyc
+Somente em pypydock/rpython/rtyper: __init__.pyc
+Somente em pypydock/rpython/rtyper: llannotation.pyc
+Somente em pypydock/rpython/rtyper: llinterp.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: __init__.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: ll2ctypes.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: llarena.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: llgroup.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: llheap.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: llmemory.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: lloperation.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: ll_str.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: lltype.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem/module: __init__.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem/module: ll_math.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: opimpl.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: __pycache__
+Somente em pypydock/rpython/rtyper/lltypesystem: rbuilder.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rbytearray.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rdict.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rffi.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rlist.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rordereddict.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rpbc.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rrange.pyc
+Somente em pypydock/rpython/rtyper/lltypesystem: rstr.pyc
+Somente em pypydock/rpython/rtyper/module: __init__.pyc
+Somente em pypydock/rpython/rtyper/module: ll_os_environ.pyc
+diff -r pypydock/rpython/rtyper/module/ll_os.py pypy-2.6.0-src/rpython/rtyper/module/ll_os.py
+24d23
+< from rpython.translator.platform import is_host_build
+150c149
+<         if not _WIN32 and is_host_build():
+---
+>         if not _WIN32:
+783,785d781
+<         compilation_info = ExternalCompilationInfo(
+<             includes = ['grp.h']
+<         )
+788d783
+<                                        compilation_info=compilation_info,
+1813,1818d1807
+<         if sys.platform.startswith("linux"):
+<             includes = ['pty.h']
+<         elif sys.platform == "darwin":
+<             includes = ['util.h']
+<         else:
+<             includes = []
+1823,1824c1812
+<             compilation_info=ExternalCompilationInfo(libraries=['util'],
+<                                                      includes=includes),
+---
+>             compilation_info=ExternalCompilationInfo(libraries=['util']),
+1845,1850d1832
+<         if sys.platform.startswith("linux"):
+<             includes = ['pty.h']
+<         elif sys.platform == "darwin":
+<             includes = ['util.h']
+<         else:
+<             includes = []
+1855,1856c1837
+<             compilation_info=ExternalCompilationInfo(libraries=['util'],
+<                                                      includes=includes),
+---
+>             compilation_info=ExternalCompilationInfo(libraries=['util']),
+Somente em pypydock/rpython/rtyper/module: ll_os.pyc
+Somente em pypydock/rpython/rtyper/module: ll_os_stat.pyc
+Somente em pypydock/rpython/rtyper/module: ll_time.pyc
+Somente em pypydock/rpython/rtyper/module: r_os_stat.pyc
+Somente em pypydock/rpython/rtyper/module: support.pyc
+Somente em pypydock/rpython/rtyper: normalizecalls.pyc
+Somente em pypydock/rpython/rtyper: __pycache__
+Somente em pypydock/rpython/rtyper: raddress.pyc
+Somente em pypydock/rpython/rtyper: raisingops.pyc
+Somente em pypydock/rpython/rtyper: rbool.pyc
+Somente em pypydock/rpython/rtyper: rbuilder.pyc
+Somente em pypydock/rpython/rtyper: rbuiltin.pyc
+Somente em pypydock/rpython/rtyper: rbytearray.pyc
+Somente em pypydock/rpython/rtyper: rclass.pyc
+Somente em pypydock/rpython/rtyper: rcontrollerentry.pyc
+Somente em pypydock/rpython/rtyper: rdict.pyc
+Somente em pypydock/rpython/rtyper: rfloat.pyc
+Somente em pypydock/rpython/rtyper: rint.pyc
+Somente em pypydock/rpython/rtyper: rlist.pyc
+Somente em pypydock/rpython/rtyper: rmodel.pyc
+Somente em pypydock/rpython/rtyper: rnone.pyc
+Somente em pypydock/rpython/rtyper: rpbc.pyc
+Somente em pypydock/rpython/rtyper: rptr.pyc
+Somente em pypydock/rpython/rtyper: rrange.pyc
+Somente em pypydock/rpython/rtyper: rstr.pyc
+Somente em pypydock/rpython/rtyper: rtuple.pyc
+Somente em pypydock/rpython/rtyper: rtyper.pyc
+Somente em pypydock/rpython/rtyper: rvirtualizable.pyc
+Somente em pypydock/rpython/rtyper: rweakref.pyc
+Somente em pypydock/rpython/rtyper/test: __init__.pyc
+Somente em pypydock/rpython/rtyper/test: test_llinterp.pyc
+Somente em pypydock/rpython/rtyper/tool: __init__.pyc
+Somente em pypydock/rpython/rtyper/tool: __pycache__
+Somente em pypydock/rpython/rtyper/tool: rfficache.pyc
+Somente em pypydock/rpython/rtyper/tool: rffi_platform.pyc
+Somente em pypydock/rpython/rtyper: typesystem.pyc
+Somente em pypydock/rpython/tool/algo: color.pyc
+Somente em pypydock/rpython/tool/algo: graphlib.pyc
+Somente em pypydock/rpython/tool/algo: __init__.pyc
+Somente em pypydock/rpython/tool/algo: __pycache__
+Somente em pypydock/rpython/tool/algo: regalloc.pyc
+Somente em pypydock/rpython/tool/algo: sparsemat.pyc
+Somente em pypydock/rpython/tool/algo: unionfind.pyc
+Somente em pypydock/rpython/tool: ansi_mandelbrot.pyc
+Somente em pypydock/rpython/tool: ansi_print.pyc
+Somente em pypydock/rpython/tool: descriptor.pyc
+Somente em pypydock/rpython/tool: error.pyc
+Somente em pypydock/rpython/tool: frozenlist.pyc
+Somente em pypydock/rpython/tool: gcc_cache.pyc
+Somente em pypydock/rpython/tool: identity_dict.pyc
+Somente em pypydock/rpython/tool: __init__.pyc
+Somente em pypydock/rpython/tool: leakfinder.pyc
+Somente em pypydock/rpython/tool: nullpath.pyc
+Somente em pypydock/rpython/tool: pairtype.pyc
+Somente em pypydock/rpython/tool: __pycache__
+Somente em pypydock/rpython/tool: runsubprocess.pyc
+Somente em pypydock/rpython/tool: sourcetools.pyc
+Somente em pypydock/rpython/tool: stdlib_opcode.pyc
+Somente em pypydock/rpython/tool: udir.pyc
+Somente em pypydock/rpython/tool: uid.pyc
+Somente em pypydock/rpython/tool: version.pyc
+Somente em pypydock/rpython/translator/backendopt: all.pyc
+Somente em pypydock/rpython/translator/backendopt: canraise.pyc
+Somente em pypydock/rpython/translator/backendopt: constfold.pyc
+Somente em pypydock/rpython/translator/backendopt: escape.pyc
+Somente em pypydock/rpython/translator/backendopt: finalizer.pyc
+Somente em pypydock/rpython/translator/backendopt: gilanalysis.pyc
+Somente em pypydock/rpython/translator/backendopt: graphanalyze.pyc
+Somente em pypydock/rpython/translator/backendopt: __init__.pyc
+Somente em pypydock/rpython/translator/backendopt: inline.pyc
+Somente em pypydock/rpython/translator/backendopt: innerloop.pyc
+Somente em pypydock/rpython/translator/backendopt: mallocprediction.pyc
+Somente em pypydock/rpython/translator/backendopt: malloc.pyc
+Somente em pypydock/rpython/translator/backendopt: merge_if_blocks.pyc
+Somente em pypydock/rpython/translator/backendopt: raisingop2direct_call.pyc
+Somente em pypydock/rpython/translator/backendopt: removeassert.pyc
+Somente em pypydock/rpython/translator/backendopt: removenoops.pyc
+Somente em pypydock/rpython/translator/backendopt: ssa.pyc
+Somente em pypydock/rpython/translator/backendopt: stat.pyc
+Somente em pypydock/rpython/translator/backendopt: storesink.pyc
+Somente em pypydock/rpython/translator/backendopt: support.pyc
+Somente em pypydock/rpython/translator/backendopt: writeanalyze.pyc
+Somente em pypydock/rpython/translator/c: database.pyc
+Somente em pypydock/rpython/translator/c: external.pyc
+Somente em pypydock/rpython/translator/c: extfunc.pyc
+diff -r pypydock/rpython/translator/c/funcgen.py pypy-2.6.0-src/rpython/translator/c/funcgen.py
+833,834c833,834
+<         return 'if ((-%s <= (long)%s) && (((long)%s) < %s)) abort();' % (
+<             "PYPY_POINTER_MIN", expr, expr, "PYPY_POINTER_MIN")
+---
+>         return 'if ((-8192 <= (long)%s) && (((long)%s) < 8192)) abort();' % (
+>             expr, expr)
+Somente em pypydock/rpython/translator/c: funcgen.pyc
+Somente em pypydock/rpython/translator/c: gc.pyc
+Somente em pypydock/rpython/translator/c: genc.pyc
+Somente em pypydock/rpython/translator/c: __init__.pyc
+Somente em pypydock/rpython/translator/c: node.pyc
+Somente em pypydock/rpython/translator/c: primitive.pyc
+diff -r pypydock/rpython/translator/c/src/commondefs.h pypy-2.6.0-src/rpython/translator/c/src/commondefs.h
+123,129d122
+< 
+< /* The smallest positive value that can be a valid object pointer. */
+< #ifdef EMSCRIPTEN
+< # define PYPY_POINTER_MIN 8
+< #else
+< # define PYPY_POINTER_MIN 8192
+< #endif
+diff -r pypydock/rpython/translator/c/src/entrypoint.c pypy-2.6.0-src/rpython/translator/c/src/entrypoint.c
+39d38
+<     pypy_asm_stack_bottom();
+40a40
+>     pypy_asm_stack_bottom();
+diff -r pypydock/rpython/translator/c/src/stack.h pypy-2.6.0-src/rpython/translator/c/src/stack.h
+32,35c32,33
+< #if defined(__EMSCRIPTEN__)
+< #  define PYPY_INHIBIT_TAIL_CALL()   /* no raw asm for emscripten */
+< #elif defined(__GNUC__)
+< #  define PYPY_INHIBIT_TAIL_CALL()   asm("/* inhibit_tail_call */") 
+---
+> #ifdef __GNUC__
+> #  define PYPY_INHIBIT_TAIL_CALL()   asm("/* inhibit_tail_call */")
+Somente em pypydock/rpython/translator/c: support.pyc
+diff -r pypydock/rpython/translator/driver.py pypy-2.6.0-src/rpython/translator/driver.py
+523,532d522
+<     # For now, the "JS" backend is actually just the C backend with
+<     # compiler set to `emcc`.  It's neater to expose this as a fully
+<     # separate backend.
+< 
+<     task_database_js = task_database_c
+< 
+<     task_source_js = task_source_c
+< 
+<     task_compile_js = task_compile_c
+< 
+Somente em pypydock/rpython/translator: driver.pyc
+Somente em pypydock/rpython/translator: exceptiontransform.pyc
+Somente em pypydock/rpython/translator: gensupp.pyc
+Somente em pypydock/rpython/translator/goal: __init__.pyc
+Somente em pypydock/rpython/translator/goal: __pycache__
+Somente em pypydock/rpython/translator/goal: query.pyc
+Somente em pypydock/rpython/translator/goal: timing.pyc
+Somente em pypydock/rpython/translator/goal: translate.pyc
+Somente em pypydock/rpython/translator: __init__.pyc
+Somente em pypydock/rpython/translator/platform: emscripten_platform
+diff -r pypydock/rpython/translator/platform/__init__.py pypy-2.6.0-src/rpython/translator/platform/__init__.py
+338,340d337
+<     elif new_platform == 'emscripten':
+<         from rpython.translator.platform.emscripten_platform import EmscriptenPlatform
+<         return EmscriptenPlatform()
+Somente em pypydock/rpython/translator/platform: __init__.pyc
+Somente em pypydock/rpython/translator/platform: linux.pyc
+Somente em pypydock/rpython/translator/platform: posix.pyc
+Somente em pypydock/rpython/translator/platform: __pycache__
+Somente em pypydock/rpython/translator: __pycache__
+Somente em pypydock/rpython/translator: simplify.pyc
+Somente em pypydock/rpython/translator/tool: cbuild.pyc
+Somente em pypydock/rpython/translator/tool: __init__.pyc
+Somente em pypydock/rpython/translator/tool: pdbplus.pyc
+Somente em pypydock/rpython/translator/tool: __pycache__
+Somente em pypydock/rpython/translator/tool: taskengine.pyc
+Somente em pypydock/rpython/translator: transform.pyc
+Somente em pypydock/rpython/translator: translator.pyc
+Somente em pypydock/rpython/translator: unsimplify.pyc
